@@ -86,6 +86,7 @@ export default class Carousel extends Component {
         size,
         childrenLength,
         contents: null,
+        infintie: true || props.infinite
       };
     } else {
       this.state = { size };
@@ -130,10 +131,13 @@ export default class Carousel extends Component {
         for (let i = 0; i < children.length; i += 1) {
           pages.push(children[i]);
         }
-        // We want to make infinite pages structure like this: 1-2-3-1-2
+        // If inifinite props is set to true
+        // we want to make infinite pages structure like this: 1-2-3-1-2
         // so we add first and second page again to the end
-        pages.push(children[0]);
-        pages.push(children[1]);
+        if (this.state.infinite) {
+          pages.push(children[0]);
+          pages.push(children[1]);
+        }
       } else if (children) {
         pages.push(children[0]);
       } else {
